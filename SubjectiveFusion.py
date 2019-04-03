@@ -53,34 +53,35 @@ print("7000 counts: ", len(dCode7000))
 print("8000 counts: ", len(dCode8000))
 
 
-print("Base 1000 : ", round(len(dCode1000)/totalCount, 2))
-print("Base 7000 : ", round(len(dCode7000)/totalCount, 2))
-print("Base 8000 : ", round(len(dCode8000)/totalCount, 2))
+print("Base 1000 : ", round(len(dCode1000)/totalCount, 4))
+print("Base 7000 : ", round(len(dCode7000)/totalCount, 4))
+print("Base 8000 : ", round(len(dCode8000)/totalCount, 4))
 
 
-print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(dCode1000Practitioner),2))
-print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(dCode1000Practitioner),2))
+print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(practitionerData),4))
+print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(practitionerData),4))
 
 
-prac1000m = round(len(dCode1000PractitionerM)/len(dCode1000Practitioner), 2)
-prac1000f = round(len(dCode1000PractitionerF)/len(dCode1000Practitioner), 2)
-prac7000m = round(len(dCode7000PractitionerM)/len(dCode7000Practitioner), 2)
-prac7000f = round(len(dCode7000PractitionerF)/len(dCode7000Practitioner), 2)
-prac8000m = round(len(dCode8000PractitionerM)/len(dCode8000Practitioner), 2)
-prac8000f = round(len(dCode8000PractitionerF)/len(dCode8000Practitioner), 2)
+prac1000m = round(len(dCode1000PractitionerM)/len(practitionerData), 4)
+prac1000f = round(len(dCode1000PractitionerF)/len(practitionerData), 4)
+prac7000m = round(len(dCode7000PractitionerM)/len(practitionerData), 4)
+prac7000f = round(len(dCode7000PractitionerF)/len(practitionerData), 4)
+prac8000m = round(len(dCode8000PractitionerM)/len(practitionerData), 4)
+prac8000f = round(len(dCode8000PractitionerF)/len(practitionerData), 4)
 
-phyc1000m = round(len(dCode1000PhysicianM)/len(dCode1000Physician), 2)
-phyc1000f = round(len(dCode1000PhysicianF)/len(dCode1000Physician), 2)
-# phyc7000m = round(len(dCode7000PhysicianM)/len(dCode7000Physician), 2)
-# phyc7000f = round(len(dCode7000PhysicianF)/len(dCode7000Physician), 2)
-# phyc8000m = round(len(dCode8000PhysicianM)/len(dCode8000Physician), 2)
-# phyc8000f = round(len(dCode8000PhysicianF)/len(dCode8000Physician), 2)
-
-
-belief1 = [prac1000f, prac1000m, prac7000f, prac7000m, prac8000f, prac8000m]
-belief2 = [phyc1000f, phyc1000m, 1, 1, 1, 1]
+phyc1000m = round(len(dCode1000PhysicianM)/len(physicianData), 4)
+phyc1000f = round(len(dCode1000PhysicianF)/len(physicianData), 4)
+phyc7000m = round(len(dCode7000PhysicianM)/len(physicianData), 4)
+phyc7000f = round(len(dCode7000PhysicianF)/len(physicianData), 4)
+phyc8000m = round(len(dCode8000PhysicianM)/len(physicianData), 4)
+phyc8000f = round(len(dCode8000PhysicianF)/len(physicianData), 4)
 
 
+belief1 = [prac1000f, prac1000m, prac7000f, prac7000m]
+belief2 = [phyc1000f, phyc1000m, phyc7000f, phyc7000m]
+
+uncertainty1 = 1 - sum(belief1)
+uncertainty2 = 1 - sum(belief2)
 # interstion function used for relative base rate calculation
 # def intersection(lst1, lst2):
 #     lst3 = [value for value in lst1 if value in lst2]
@@ -188,7 +189,11 @@ def probability_projection(numSubsets,relative_a_values):
 print(belief1)
 print(belief2)
 
-fused_belief_rates = cumulative_fusion(0.5, 0.5, len(belief1), belief1, belief2)
+print("Uncert 1", uncertainty1)
+print("Uncert 2", uncertainty2)
+
+
+fused_belief_rates = cumulative_fusion(uncertainty1, uncertainty2, len(belief1), belief1, belief2)
 
 
 print("fused beliefs ", fused_belief_rates[0])
