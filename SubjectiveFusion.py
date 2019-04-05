@@ -13,10 +13,23 @@ practitionerData = fusion[fusion['Practice Type'] == 'PRACTITIONERS']
 physicianData = fusion[fusion['Practice Type'] == 'PHYSICIANS']
 # print(physicianData.head())
 
-
+# ==========================================================================================================#
 dCode1000 = fusion[(fusion['OHIP Diagnosis Code'] >= 000) & (fusion['OHIP Diagnosis Code'] <= 1000)]
 dCode7000 = fusion[(fusion['OHIP Diagnosis Code'] > 1000) & (fusion['OHIP Diagnosis Code'] <= 7000)]
 dCode8000 = fusion[(fusion['OHIP Diagnosis Code'] > 7000)]
+
+# ==========================================================================================================#
+
+dCode1000M = dCode1000[(dCode1000['Sex'] == 'M')]
+dCode1000F = dCode1000[(dCode1000['Sex'] == 'F')]
+
+dCode7000M = dCode7000[(dCode7000['Sex'] == 'M')]
+dCode7000F = dCode7000[(dCode7000['Sex'] == 'F')]
+
+dCode8000M = dCode8000[(dCode8000['Sex'] == 'M')]
+dCode8000F = dCode8000[(dCode8000['Sex'] == 'F')]
+
+# ==========================================================================================================#
 
 dCode1000Practitioner = practitionerData[(practitionerData['OHIP Diagnosis Code'] >= 000) & (practitionerData['OHIP Diagnosis Code'] <= 1000)]
 dCode7000Practitioner = practitionerData[(practitionerData['OHIP Diagnosis Code'] > 1000) & (practitionerData['OHIP Diagnosis Code'] <= 7000)]
@@ -25,6 +38,8 @@ dCode8000Practitioner = practitionerData[(practitionerData['OHIP Diagnosis Code'
 dCode1000Physician = physicianData[(physicianData['OHIP Diagnosis Code'] >= 000) & (physicianData['OHIP Diagnosis Code'] <= 1000)]
 dCode7000Physician = physicianData[(physicianData['OHIP Diagnosis Code'] > 1000) & (physicianData['OHIP Diagnosis Code'] <= 7000)]
 dCode8000Physician = physicianData[(physicianData['OHIP Diagnosis Code'] > 7000)]
+
+# ==========================================================================================================#
 
 dCode1000PractitionerM = dCode1000Practitioner[(dCode1000Practitioner['Sex'] == 'M')]
 dCode1000PractitionerF = dCode1000Practitioner[(dCode1000Practitioner['Sex'] == 'F')]
@@ -46,6 +61,8 @@ dCode7000PhysicianF = dCode7000Physician[(dCode7000Physician['Sex'] == 'F')]
 dCode8000PhysicianM = dCode8000Physician[(dCode8000Physician['Sex'] == 'M')]
 dCode8000PhysicianF = dCode8000Physician[(dCode8000Physician['Sex'] == 'F')]
 
+# ==========================================================================================================#
+
 totalCount = len(dCode1000) + len(dCode7000) + len(dCode8000)
 
 print("0-1000 counts: ", len(dCode1000))
@@ -53,35 +70,43 @@ print("7000 counts: ", len(dCode7000))
 print("8000 counts: ", len(dCode8000))
 
 
-print("Base 1000 : ", round(len(dCode1000)/totalCount, 4))
-print("Base 7000 : ", round(len(dCode7000)/totalCount, 4))
-print("Base 8000 : ", round(len(dCode8000)/totalCount, 4))
+print("Base 1000 : ", round(len(dCode1000)/totalCount, 8))
+print("Base 7000 : ", round(len(dCode7000)/totalCount, 8))
+print("Base 8000 : ", round(len(dCode8000)/totalCount, 8))
 
 
-print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(practitionerData),4))
-print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(practitionerData),4))
+print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(practitionerData),8))
+print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(practitionerData),8))
 
+# ==========================================================================================================#
 
-prac1000m = round(len(dCode1000PractitionerM)/len(practitionerData), 4)
-prac1000f = round(len(dCode1000PractitionerF)/len(practitionerData), 4)
-prac7000m = round(len(dCode7000PractitionerM)/len(practitionerData), 4)
-prac7000f = round(len(dCode7000PractitionerF)/len(practitionerData), 4)
-prac8000m = round(len(dCode8000PractitionerM)/len(practitionerData), 4)
-prac8000f = round(len(dCode8000PractitionerF)/len(practitionerData), 4)
+prac1000m = round(len(dCode1000PractitionerM)/len(practitionerData), 8)
+prac1000f = round(len(dCode1000PractitionerF)/len(practitionerData), 8)
+prac7000m = round(len(dCode7000PractitionerM)/len(practitionerData), 8)
+prac7000f = round(len(dCode7000PractitionerF)/len(practitionerData), 8)
+prac8000m = round(len(dCode8000PractitionerM)/len(practitionerData), 8)
+prac8000f = round(len(dCode8000PractitionerF)/len(practitionerData), 8)
 
-phyc1000m = round(len(dCode1000PhysicianM)/len(physicianData), 4)
-phyc1000f = round(len(dCode1000PhysicianF)/len(physicianData), 4)
-phyc7000m = round(len(dCode7000PhysicianM)/len(physicianData), 4)
-phyc7000f = round(len(dCode7000PhysicianF)/len(physicianData), 4)
-phyc8000m = round(len(dCode8000PhysicianM)/len(physicianData), 4)
-phyc8000f = round(len(dCode8000PhysicianF)/len(physicianData), 4)
+phyc1000m = round(len(dCode1000PhysicianM)/len(physicianData), 8)
+phyc1000f = round(len(dCode1000PhysicianF)/len(physicianData), 8)
+phyc7000m = round(len(dCode7000PhysicianM)/len(physicianData), 8)
+phyc7000f = round(len(dCode7000PhysicianF)/len(physicianData), 8)
+phyc8000m = round(len(dCode8000PhysicianM)/len(physicianData), 8)
+phyc8000f = round(len(dCode8000PhysicianF)/len(physicianData), 8)
 
+# ==========================================================================================================#
 
 belief1 = [prac1000f, prac1000m, prac7000f, prac7000m]
 belief2 = [phyc1000f, phyc1000m, phyc7000f, phyc7000m]
 
 uncertainty1 = 1 - sum(belief1)
 uncertainty2 = 1 - sum(belief2)
+
+base_rate_counts = [len(dCode1000), len(dCode7000), len(dCode8000)]
+b_Intersection_count = [[len(dCode1000M), len(dCode7000M), len(dCode8000M)],
+                        [len(dCode1000F), len(dCode7000F), len(dCode8000F)]]
+
+
 # interstion function used for relative base rate calculation
 # def intersection(lst1, lst2):
 #     lst3 = [value for value in lst1 if value in lst2]
@@ -165,25 +190,27 @@ def average_fusion(uncertaintyA, uncertaintyB, numSubsets, b1, b2):
 # Output: All of the relative base rates stored in the array 'relative_a_values'
 
 
-def relative_base_rates(numSubsets):
+def relative_base_rates(numSubsets, base_rate_intersection_set, baserate_set):
     relative_a_values = []
     for i in range(numSubsets):
         for j in range(numSubsets):
             if i == j: #Unsure if this is a special case or treated the same
                 relative_a_values[i][j] = 1
             else:
-                relative_a_values[i][j] = 1
-
+                relative_a_values[i][j] = base_rate_intersection_set[i][j]/baserate_set[j]
+    return relative_a_values
                 #find intersection of base rates and jth base rate
 
 # Unfinished
 
 
-def probability_projection(numSubsets,relative_a_values):
+def probability_projection(numSubsets , fused_belief, relative_a_values, xi_base_rate, uncertainty_fullset):
     summation_of_relative_base_rates = 0.0
     for i in range(numSubsets):
         for j in range(numSubsets):
-            summation_of_relative_base_rates += relative_a_values[i][j]
+            summation_of_relative_base_rates += relative_a_values[i][j]/fused_belief[j]
+
+    return summation_of_relative_base_rates + (xi_base_rate*uncertainty_fullset)
 
 
 print(belief1)
@@ -194,7 +221,15 @@ print("Uncert 2", uncertainty2)
 
 
 fused_belief_rates = cumulative_fusion(uncertainty1, uncertainty2, len(belief1), belief1, belief2)
+final_relative_base_rates = relative_base_rates(len(belief1), b_Intersection_count, base_rate_counts)
+
+
+x1_base = len(dCode1000)/len(fusion)
+
+projected_probability_x1 = probability_projection(len(belief1), fused_belief_rates, final_relative_base_rates, x1_base, 0.5)
 
 
 print("fused beliefs ", fused_belief_rates[0])
 print("fused uncertainty ", fused_belief_rates[1])
+print("Relative base rates ", final_relative_base_rates)
+print("Projectied probability with x1 = ", x1_base, " E(x1) = ", projected_probability_x1)
