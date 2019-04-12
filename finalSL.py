@@ -162,7 +162,8 @@ print("\n")
 print("Relative base rates with W:", base_rate_w)
 
 for x in final_relative_base_rates:
-    print(x)
+    for y in x:
+        print(y)
 
 print("\n")
 print("Projected probability with x1 = ", belief1[0], ", uncertainty(X) = ",
