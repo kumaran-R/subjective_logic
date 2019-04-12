@@ -190,14 +190,14 @@ def average_fusion(uncertaintyA, uncertaintyB, numSubsets, b1, b2):
 # Output: All of the relative base rates stored in the array 'relative_a_values'
 
 
-def relative_base_rates(numSubsets, base_rate_intersection_set, baserate_set):
+def relative_base_rates(numSubsets, base_rate_intersection_set, baserate_set, w):
     relative_a_values = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
     for i in range(numSubsets-1):
         for j in range(numSubsets):
             if i == j:
-                relative_a_values[i][j] = 1.0
+                relative_a_values[i][j] = baserate_set[j]/(baserate_set[j] + w)
             else:
-                relative_a_values[i][j] = base_rate_intersection_set[i][j]/baserate_set[j]
+                relative_a_values[i][j] = base_rate_intersection_set[i][j]/(baserate_set[j]+w)
     return relative_a_values
                 #find intersection of base rates and jth base rate
 
@@ -206,9 +206,11 @@ def relative_base_rates(numSubsets, base_rate_intersection_set, baserate_set):
 
 def probability_projection(numSubsets , fused_belief, relative_a_values, xi_base_rate, uncertainty_fullset):
     summation_of_relative_base_rates = 0.0
+    k =0
     for i in range(numSubsets-1):
         for j in range(numSubsets):
-            summation_of_relative_base_rates = summation_of_relative_base_rates + (relative_a_values[i][j]/fused_belief[j])
+            summation_of_relative_base_rates = summation_of_relative_base_rates + (relative_a_values[i][j]*fused_belief[k])
+            k = k+1
 
     return summation_of_relative_base_rates + (xi_base_rate*uncertainty_fullset)
 
@@ -221,12 +223,12 @@ print("Uncert 2", uncertainty2)
 print("base rate intersection counts ", b_Intersection_count)
 
 fused_belief_rates = cumulative_fusion(uncertainty1, uncertainty2, len(belief1), belief1, belief2)
-final_relative_base_rates = relative_base_rates(len(belief1)-1, b_Intersection_count, base_rate_counts)
+final_relative_base_rates = relative_base_rates(len(belief1)-1, b_Intersection_count, base_rate_counts, 3)
 
 
 x1_base = len(dCode1000)/len(fusion)
 
-projected_probability_x1 = probability_projection(len(belief1)-1, [0.02, 0.2, 0.28], final_relative_base_rates, x1_base, 0.5)
+# projected_probability_x1 = probability_projection(len(belief1)-1, [0.02, 0.2, 0.28], final_relative_base_rates, x1_base, 0.5)
 
 
 print("fused beliefs ", fused_belief_rates[0])
@@ -234,4 +236,4 @@ print("fused uncertainty ", fused_belief_rates[1])
 
 
 print("Relative base rates ", final_relative_base_rates)
-print("Projectied probability with x1 = ", x1_base, " E(x1) = ", projected_probability_x1)
+# print("Projectied probability with x1 = ", x1_base, " E(x1) = ", projected_probability_x1)
