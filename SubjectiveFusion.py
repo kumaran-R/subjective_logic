@@ -64,19 +64,19 @@ dCode8000PhysicianF = dCode8000Physician[(dCode8000Physician['Sex'] == 'F')]
 # ==========================================================================================================#
 
 totalCount = len(dCode1000) + len(dCode7000) + len(dCode8000)
-
-print("0-1000 counts: ", len(dCode1000))
-print("7000 counts: ", len(dCode7000))
-print("8000 counts: ", len(dCode8000))
-
-
-print("Base 1000 : ", round(len(dCode1000)/totalCount, 8))
-print("Base 7000 : ", round(len(dCode7000)/totalCount, 8))
-print("Base 8000 : ", round(len(dCode8000)/totalCount, 8))
-
-
-print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(practitionerData),8))
-print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(practitionerData),8))
+#
+# print("0-1000 counts: ", len(dCode1000))
+# print("7000 counts: ", len(dCode7000))
+# print("8000 counts: ", len(dCode8000))
+#
+#
+# print("Base 1000 : ", round(len(dCode1000)/totalCount, 8))
+# print("Base 7000 : ", round(len(dCode7000)/totalCount, 8))
+# print("Base 8000 : ", round(len(dCode8000)/totalCount, 8))
+#
+#
+# print("b(Prac+1000+M)", round(len(dCode1000PractitionerM)/len(practitionerData),8))
+# print("b(Prac+1000+F)", round(len(dCode1000PractitionerF)/len(practitionerData),8))
 
 # ==========================================================================================================#
 
@@ -214,13 +214,13 @@ def probability_projection(numSubsets , fused_belief, relative_a_values, xi_base
 
     return summation_of_relative_base_rates + (xi_base_rate*uncertainty_fullset)
 
-
-print(belief1)
-print(belief2)
-
-print("Uncert 1", uncertainty1)
-print("Uncert 2", uncertainty2)
-print("base rate intersection counts ", b_Intersection_count)
+#
+# print(belief1)
+# print(belief2)
+#
+# print("Uncert 1", uncertainty1)
+# print("Uncert 2", uncertainty2)
+# print("base rate intersection counts ", b_Intersection_count)
 
 fused_belief_rates = cumulative_fusion(uncertainty1, uncertainty2, len(belief1), belief1, belief2)
 final_relative_base_rates = relative_base_rates(len(belief1)-1, b_Intersection_count, base_rate_counts, 3)
@@ -229,11 +229,11 @@ final_relative_base_rates = relative_base_rates(len(belief1)-1, b_Intersection_c
 x1_base = len(dCode1000)/len(fusion)
 
 # projected_probability_x1 = probability_projection(len(belief1)-1, [0.02, 0.2, 0.28], final_relative_base_rates, x1_base, 0.5)
-
-
-print("fused beliefs ", fused_belief_rates[0])
-print("fused uncertainty ", fused_belief_rates[1])
-
-
-print("Relative base rates ", final_relative_base_rates)
+#
+#
+# print("fused beliefs ", fused_belief_rates[0])
+# print("fused uncertainty ", fused_belief_rates[1])
+#
+#
+# print("Relative base rates ", final_relative_base_rates)
 # print("Projectied probability with x1 = ", x1_base, " E(x1) = ", projected_probability_x1)
