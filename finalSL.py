@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import warnings
 from SubjectiveFusion import cumulative_fusion, average_fusion, probability_projection, relative_base_rates
+from operators import deduction_calculate, cumulative_fusion
 fusion = pd.read_csv("Sample_dataset.csv")
 
 practitionerData = fusion[fusion['Practice Type'] == 'PRACTITIONERS']
@@ -147,8 +148,33 @@ print("Uncertainty Agent 2 : ", uncertainty2)
 print("\n")
 fused_belief_rates = cumulative_fusion(uncertainty1, uncertainty2, len(belief1), belief1, belief2)
 final_relative_base_rates = relative_base_rates(3, b_Intersection_count, base_rate_counts, base_rate_w)
-projected_probability_x1 = probability_projection(3, fused_belief_rates[0], final_relative_base_rates, belief1[0], uncertainty_full)
+projected_probability_x1 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base1000F, uncertainty_full)
+
+projected_probability_x2 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base1000M, uncertainty_full)
+
+projected_probability_x3 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base7000F, uncertainty_full)
+
+projected_probability_x4 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base7000M, uncertainty_full)
+
+projected_probability_x5 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base8000F, uncertainty_full)
+
+projected_probability_x6 = probability_projection(3, fused_belief_rates[0],
+                                                  final_relative_base_rates, base8000M, uncertainty_full)
 print("cumulative fused beliefs: ")
+
+print("X1: 0 -1000 , F")
+print("X2: 0 -1000 , M")
+print("X3: 1000 -7000 , F")
+print("X4: 1000 -7000 , M")
+print("X5: 7000 -8000 , F")
+print("X6: 7000 -8000 , M")
+
+
 
 for x in fused_belief_rates[0]:
     print(x)
@@ -166,5 +192,47 @@ for x in final_relative_base_rates:
         print(y)
 
 print("\n")
-print("Projected probability with x1 = ", belief1[0], ", uncertainty(X) = ",
+print("Projected probability with x1 = ", fused_belief_rates[0][0], ", uncertainty(X) = ",
       uncertainty_full, "  E(x1) = ", projected_probability_x1)
+
+print("Projected probability with x2 = ", fused_belief_rates[0][1], ", uncertainty(X) = ",
+      uncertainty_full, "  E(x1) = ", projected_probability_x2)
+print("Projected probability with x3 = ", fused_belief_rates[0][2], ", uncertainty(X) = ",
+      uncertainty_full, "  E(x1) = ", projected_probability_x3)
+print("Projected probability with x4 = ", fused_belief_rates[0][3], ", uncertainty(X) = ",
+      uncertainty_full, "  E(x1) = ", projected_probability_x4)
+print("Projected probability with x5 = ", fused_belief_rates[0][4], ", uncertainty(X) = ",
+      uncertainty_full, "  E(x1) = ", projected_probability_x5)
+print("Projected probability with x6 = ", fused_belief_rates[0][5], ", uncertainty(X) = ",
+      uncertainty_full, "  E(x1) = ", projected_probability_x6)
+
+px = {
+    "baserate":0.76,
+    "belief":0.22,
+    "disbelief":0.58,
+    "uncertainty":0.2,
+    "projectedproba":0.38
+}
+
+pyx = {
+    "baserate":0.68,
+    "belief":0.7,
+    "disbelief":0.15,
+    "uncertainty":0.15,
+    "projectedproba":0.8
+}
+
+pyx1 = {
+    "baserate":0.68,
+    "belief":0.14,
+    "disbelief":0.63,
+    "uncertainty":0.23,
+    "projectedproba":0.29
+}
+
+arg1 = [pyx, pyx1]
+
+
+dec = deduction_calculate(arg1, px)
+
+print(dec)
