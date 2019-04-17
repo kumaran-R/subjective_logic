@@ -15,7 +15,7 @@ phyF = physicianData[(physicianData['Sex'] == 'F')]
 
 pracM = practitionerData[(practitionerData['Sex'] == 'M')]
 pracF = practitionerData[(practitionerData['Sex'] == 'F')]
-w = 1
+w = 2
 
 baseM = len(dataM)/(len(fusion)+w)
 baseF = len(dataF)/(len(fusion)+w)
@@ -60,7 +60,7 @@ print("Agent 2 (b,d,u,a) = ", "(", phycb1, phycb2, u2, baseM, ")")
 
 fused_opinions = cumulative_fusion(agent1, agent2)
 
-print(fused_opinions)
+print("fused opinions = ",fused_opinions)
 
 
 dCode1000 = fusion[(fusion['OHIP Diagnosis Code'] >= 000) & (fusion['OHIP Diagnosis Code'] <= 1000)]
