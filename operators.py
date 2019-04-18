@@ -100,7 +100,7 @@ def average_fusion(arg1,arg2):
     d2 = arg2["disbelief"]
     u1 = arg1["uncertainty"]
     u2 = arg2["uncertainty"]
-    
+
     u = 0.0
     b = 0.0
     a =0.0

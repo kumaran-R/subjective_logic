@@ -88,7 +88,129 @@ class CenteredGrid extends React.Component {
     }
 
     handleChange = name => event => {
+
         this.setState({[name]: event.target.value});
+
+       //Agent 1 x
+        if(name == 'xd1'){
+
+            let u1 = 1-(Number(this.state.xb1)+Number(event.target.value));
+
+            this.setState({
+                xu1:u1
+            })
+        }
+
+        if(name == 'xu1'){
+
+            let d1 = 1-(Number(this.state.xb1)+Number(event.target.value));
+
+            this.setState({
+                xd1:d1
+            })
+        }
+
+//Agent 2 x
+
+        if(name === 'xd2'){
+
+            let u1 = 1-(Number(this.state.xb2)+Number(event.target.value));
+
+            this.setState({
+                xu2:u1
+            })
+        }
+
+        if(name === 'xu2'){
+
+            let d1 = 1-(Number(this.state.xb2)+Number(event.target.value));
+
+            this.setState({
+                xd2:d1
+            })
+        }
+
+
+        //Agent 1 yx
+        if(name === 'yxd1'){
+
+            let u1 = 1-(Number(this.state.yxb1)+Number(event.target.value));
+
+            this.setState({
+                yxu1:u1
+            })
+        }
+
+        if(name === 'yxu1'){
+
+            let d1 = 1-(Number(this.state.yxb1)+Number(event.target.value));
+
+            this.setState({
+                yxd1:d1
+            })
+        }
+
+        //Agent 2 yx
+        if(name === 'yxd2'){
+
+            let u1 = 1-(Number(this.state.yxb2)+Number(event.target.value));
+
+            this.setState({
+                yxu2:u1
+            })
+        }
+
+        if(name === 'xyu2'){
+
+            let d1 = 1-(Number(this.state.yxb2)+Number(event.target.value));
+
+            this.setState({
+                yxd2:d1
+            })
+        }
+
+
+        //Agent 1 ynotx
+        if(name === 'ynotxd1'){
+
+            let u1 = 1-(Number(this.state.ynotxb1)+Number(event.target.value));
+
+            this.setState({
+                ynotxu1:u1
+            })
+        }
+
+        if(name === 'ynotxu1'){
+
+            let d1 = 1-(Number(this.state.ynotxb1)+Number(event.target.value));
+
+            this.setState({
+                ynotxd1:d1
+            })
+        }
+
+        //Agent 2 yx
+        if(name === 'ynotxd2'){
+
+            let u1 = 1-(Number(this.state.ynotxb2)+Number(event.target.value));
+
+            this.setState({
+                ynotxu2:u1
+            })
+        }
+
+        if(name === 'ynotxu2'){
+
+            let d1 = 1-(Number(this.state.ynotxb2)+Number(event.target.value));
+
+            this.setState({
+                ynotxd2:d1
+            })
+        }
+
+
+
+
     };
 
 
@@ -387,7 +509,7 @@ class CenteredGrid extends React.Component {
                 <Grid container spacing={24} style={{width: "100%", margin: 0}}>
 
                     <AppBar position="static">
-                        <Toolbar>
+                        <Toolbar style={{textAlign:"center"}}>
 
                             <Typography variant="h6" color="inherit" className={classes.grow}>
                                 Subjective Logic
@@ -415,23 +537,23 @@ class CenteredGrid extends React.Component {
 
                                                     <Grid item xs={3}>
                                                         <TextField
-                                                            id="standard-number"
+                                                            id="standard-number1"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.xb1}
                                                             onChange={this.handleChange('xb1')}
                                                             type="number"
                                                             className={classes.textField}
                                                             InputLabelProps={{
                                                                 shrink: true,
-                                                            }}
+                                                                 }}
                                                             margin="normal"
                                                         />
                                                     </Grid>
                                                     <Grid item xs={3}>
                                                         <TextField
-                                                            id="standard-number"
+                                                            id="standard-number2"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.xd1}
                                                             onChange={this.handleChange('xd1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -443,9 +565,9 @@ class CenteredGrid extends React.Component {
                                                     </Grid>
                                                     <Grid item xs={3}>
                                                         <TextField
-                                                            id="standard-number"
+                                                            id="standard-number3"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.xu1}
                                                             onChange={this.handleChange('xu1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -457,9 +579,9 @@ class CenteredGrid extends React.Component {
                                                     </Grid>
                                                     <Grid item xs={3}>
                                                         <TextField
-                                                            id="standard-number"
+                                                            id="standard-number4"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.xa1}
                                                             onChange={this.handleChange('xa1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -483,7 +605,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.xb2}
                                                             onChange={this.handleChange('xb2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -497,7 +619,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.xd2}
                                                             onChange={this.handleChange('xd2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -511,7 +633,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.xu2}
                                                             onChange={this.handleChange('xu2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -525,7 +647,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.xa2}
                                                             onChange={this.handleChange('xa2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -657,7 +779,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.yxb1}
                                                             onChange={this.handleChange('yxb1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -671,7 +793,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.yxd1}
                                                             onChange={this.handleChange('yxd1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -685,7 +807,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.yxu1}
                                                             onChange={this.handleChange('yxu1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -699,7 +821,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.yxa1}
                                                             onChange={this.handleChange('yxa1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -723,7 +845,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.yxb2}
                                                             onChange={this.handleChange('yxb2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -737,7 +859,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.yxd2}
                                                             onChange={this.handleChange('yxd2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -751,7 +873,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.yxu2}
                                                             onChange={this.handleChange('yxu2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -765,7 +887,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.yxa2}
                                                             onChange={this.handleChange('yxa2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -896,7 +1018,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxb1}
                                                             onChange={this.handleChange('ynotxb1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -910,7 +1032,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxd1}
                                                             onChange={this.handleChange('ynotxd1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -924,7 +1046,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxu1}
                                                             onChange={this.handleChange('ynotxu1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -938,7 +1060,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxa1}
                                                             onChange={this.handleChange('ynotxa1')}
                                                             type="number"
                                                             className={classes.textField}
@@ -962,7 +1084,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="belief"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxb2}
                                                             onChange={this.handleChange('ynotxb2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -976,7 +1098,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="disbelief"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxd2}
                                                             onChange={this.handleChange('ynotxd2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -990,7 +1112,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="uncertainty"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxu2}
                                                             onChange={this.handleChange('ynotxu2')}
                                                             type="number"
                                                             className={classes.textField}
@@ -1004,7 +1126,7 @@ class CenteredGrid extends React.Component {
                                                         <TextField
                                                             id="standard-number"
                                                             label="base rate"
-                                                            value={this.state.age}
+                                                            value={this.state.ynotxa2}
                                                             onChange={this.handleChange('ynotxa2')}
                                                             type="number"
                                                             className={classes.textField}
