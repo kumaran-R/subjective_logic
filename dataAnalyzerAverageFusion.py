@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import warnings
-from operators import deduction_calculate, cumulative_fusion
+from operators import deduction_calculate, cumulative_fusion, average_fusion
 fusion = pd.read_csv("OHIP-by-Month-PCrvenkovski.csv")
 
 practitionerData = fusion[fusion['Practice Type'] == 'PRACTITIONERS']
@@ -79,8 +79,8 @@ print("\n")
 print("Agent 1  x2 opinions = ", agent1x2)
 print("Agent 2  x2 opinions = ", agent2x2)
 print("Agent 1  u1 = ", u1, "Agent 1 u2 = ", u2)
-fused_opinions_x1 = cumulative_fusion(agent1x1, agent2x1)
-fused_opinions_x2 = cumulative_fusion(agent1x2, agent2x2)
+fused_opinions_x1 = average_fusion(agent1x1, agent2x1)
+fused_opinions_x2 = average_fusion(agent1x2, agent2x2)
 
 print("\n")
 
@@ -243,22 +243,22 @@ agent224 = {
    }
 
 
-fused_opinions_conditional1 = cumulative_fusion(agent111, agent211)
-fused_opinions_conditional_not1 = cumulative_fusion(agent121, agent221)
+fused_opinions_conditional1 = average_fusion(agent111, agent211)
+fused_opinions_conditional_not1 = average_fusion(agent121, agent221)
 
 
 
-fused_opinions_conditional2 = cumulative_fusion(agent112, agent212)
-fused_opinions_conditional_not2 = cumulative_fusion(agent122, agent222)
+fused_opinions_conditional2 = average_fusion(agent112, agent212)
+fused_opinions_conditional_not2 = average_fusion(agent122, agent222)
 
 
-fused_opinions_conditional3 = cumulative_fusion(agent112, agent212)
-fused_opinions_conditional_not3 = cumulative_fusion(agent122, agent222)
+fused_opinions_conditional3 = average_fusion(agent112, agent212)
+fused_opinions_conditional_not3 = average_fusion(agent122, agent222)
 
 
 
-fused_opinions_conditional4 = cumulative_fusion(agent112, agent212)
-fused_opinions_conditional_not4 = cumulative_fusion(agent122, agent222)
+fused_opinions_conditional4 = average_fusion(agent112, agent212)
+fused_opinions_conditional_not4 = average_fusion(agent122, agent222)
 
 
 

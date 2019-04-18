@@ -55,25 +55,25 @@ def deduction_calculate(arg1, arg2):
 
     if (((b0 > b1) and (d0 > d1)) or ((b0 <= b1) and (d0 <= d1))):
         K = 0
-    elif (b0 > b1) and (d0 <= d1): # CASE II
+    elif (b0 > b1) and (d0 <= d1):  # CASE II
         if Pyvacuousx <= (b1 + ay * (1 - b1 - d0)):  # CASE A
-            if (ex <= ax):# Case 1
+            if (ex <= ax):  # Case 1
                 K = ax * ux * (bIy - b1) / (ay * ex)
-            else: # Case 2
+            else:  # Case 2
                 K = ax * ux * (dIy - d0) * (b0 - b1) / ((dx + (1 - ax) * ux) * ay * (d1 - d0))
         else:  # CASE B
-            if (ex <= ax): # Case 1
+            if (ex <= ax):  # Case 1
                 K = (1 - ax) * ux * (bIy - b1) * (d1 - d0) / (ex * (1 - ay) * (b0 - b1))
             else:  # Case 2
                 K = (1 - ax) * ux * (dIy - d0) / ((1 - ay) * (dx + (1 - ax) * ux))
-    else : # CASE III
-        if (Pyvacuousx <= (b1 + ay * (1 - b1 - d0))):# CASE A
-            if (ex <= ax): # Case 1
+    else:  # CASE III
+        if (Pyvacuousx <= (b1 + ay * (1 - b1 - d0))):  # CASE A
+            if (ex <= ax):  # Case 1
                 K = (1 - ax) * ux * (dIy - d1) * (b1 - b0) / (ex * ay * (d0 - d1))
-            else:# Case 2
-                K=(1-ax) * ux * (bIy-b0) / (ay * (dx+(1-ax) * ux))
-        else : # CASE B
-            if (ex <= ax):# Case 1
+            else:  # Case 2
+                K = (1 - ax) * ux * (bIy - b0) / (ay * (dx + (1 - ax) * ux))
+        else:  # CASE B
+            if (ex <= ax):  # Case 1
                 K = ax * ux * (dIy - d1) / (ex * (1 - ay))
             else:  # Case 2
                 K = ax * ux * (bIy - b0) * (d0 - d1) / ((1 - ay) * (b1 - b0) * (dx + (1 - ax) * ux))
@@ -89,3 +89,32 @@ def deduction_calculate(arg1, arg2):
         'belief': by,
         'disbelief': dy,
         'projectedproba': ey}
+
+
+def average_fusion(arg1,arg2):
+    a1 = arg1["baserate"]
+    a2 = arg2["baserate"]
+    b1 = arg1["belief"]
+    b2 = arg2["belief"]
+    d1 = arg1["disbelief"]
+    d2 = arg2["disbelief"]
+    u1 = arg1["uncertainty"]
+    u2 = arg2["uncertainty"]
+    
+    u = 0.0
+    b = 0.0
+    a =0.0
+    if u1 != 0 or u2 != 0:
+        b = (b1 * u2 + b2 * u1) / (u1 + u2)
+        u = 2 * u1 * u2 / (u1 + u2)
+        a = (a1 + a2) / 2
+    else:
+        b = 0.5 * (b1 + b2)
+        u = 0
+        a = 0.5 * (a1 + a2)
+
+    return {'baserate': a,
+            'uncertainty': u,
+            'belief': b,
+            'disbelief': 1 - u - b,
+            'projectedproba': b + a * u}
